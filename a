@@ -1,0 +1,146 @@
+ Starting: /home/arthur/go/bin/dlv dap --listen=127.0.0.1:39551 --log-dest=3 from /home/arthur/ciandt/terraform-google-kubernetes-engine/test/integration/confidential_gpu_public
+DAP server listening at: 127.0.0.1:39551
+Type 'dlv help' for list of commands.
+TestConfidentialGpuPublic 2025-08-11T18:39:29-03:00 retry.go:91: terraform [output -no-color -json]
+TestConfidentialGpuPublic 2025-08-11T18:39:29-03:00 retry.go:91: terraform [version -json]
+2025/08/11 18:39:29 No RUN_STAGE env var set, running stage init
+2025/08/11 18:39:29 Running stage init
+TestConfidentialGpuPublic 2025-08-11T18:39:29-03:00 retry.go:91: terraform [init -upgrade=false -no-color]
+TestConfidentialGpuPublic 2025-08-11T18:39:44-03:00 retry.go:91: terraform [validate -no-color]
+2025/08/11 18:39:51 No RUN_STAGE env var set, running stage plan
+2025/08/11 18:39:51 Running stage plan
+2025/08/11 18:39:51 No RUN_STAGE env var set, running stage apply
+2025/08/11 18:39:51 Running stage apply
+TestConfidentialGpuPublic 2025-08-11T18:39:51-03:00 retry.go:91: terraform [apply -input=false -auto-approve -var project_id=project-1-id-43298943204 -no-color -lock=false]
+2025/08/11 18:53:36 No RUN_STAGE env var set, running stage verify
+2025/08/11 18:53:36 Running stage verify
+TestConfidentialGpuPublic 2025-08-11T18:53:36-03:00 retry.go:91: terraform [plan -input=false -lock=false -var project_id=project-1-id-43298943204 -no-color -lock=false -out=/tmp/btp2750020977/plan.tfplan]
+TestConfidentialGpuPublic 2025-08-11T18:53:55-03:00 retry.go:91: terraform [show -no-color -json /tmp/btp2750020977/plan.tfplan]
+TestConfidentialGpuPublic 2025-08-11T18:53:56-03:00 retry.go:91: terraform [output -no-color -json project_id]
+TestConfidentialGpuPublic 2025-08-11T18:53:57-03:00 retry.go:91: terraform [output -no-color -json location]
+TestConfidentialGpuPublic 2025-08-11T18:53:58-03:00 retry.go:91: terraform [output -no-color -json cluster_name]
+TestConfidentialGpuPublic 2025-08-11T18:53:59-03:00 retry.go:91: terraform [output -no-color -json service_account]
+TestConfidentialGpuPublic 2025-08-11T18:54:00-03:00 retry.go:91: terraform [output -no-color -json kms_key_name]
+2025/08/11 18:54:23 No RUN_STAGE env var set, running stage teardown
+2025/08/11 18:54:23 Running stage teardown
+TestConfidentialGpuPublic 2025-08-11T18:54:23-03:00 retry.go:91: terraform [destroy -auto-approve -input=false -var project_id=project-1-id-43298943204 -no-color -lock=false]
+--- FAIL: TestConfidentialGpuPublic (1499.62s)
+    utils.go:76: 
+        	Error Trace:	/home/arthur/ciandt/terraform-google-kubernetes-engine/test/integration/testutils/utils.go:76
+        	            				/home/arthur/ciandt/terraform-google-kubernetes-engine/test/integration/testutils/utils.go:63
+        	            				/home/arthur/ciandt/terraform-google-kubernetes-engine/test/integration/confidential_gpu_public/confidential_gpu_public_test.go:38
+        	            				/home/arthur/go/pkg/mod/github.com/!google!cloud!platform/cloud-foundation-toolkit/infra/blueprint-test@v0.17.8/pkg/tft/terraform.go:638
+        	            				/home/arthur/go/pkg/mod/github.com/!google!cloud!platform/cloud-foundation-toolkit/infra/blueprint-test@v0.17.8/pkg/tft/terraform.go:670
+        	            				/home/arthur/go/pkg/mod/github.com/!google!cloud!platform/cloud-foundation-toolkit/infra/blueprint-test@v0.17.8/pkg/utils/stages.go:31
+        	            				/home/arthur/go/pkg/mod/github.com/!google!cloud!platform/cloud-foundation-toolkit/infra/blueprint-test@v0.17.8/pkg/tft/terraform.go:670
+        	Error:      	Not equal: 
+        	            	expected: tfjson.Actions{"no-op"}
+        	            	actual  : tfjson.Actions{"delete", "create"}
+        	            	
+        	            	Diff:
+        	            	--- Expected
+        	            	+++ Actual
+        	            	@@ -1,3 +1,4 @@
+        	            	-(tfjson.Actions) (len=1) {
+        	            	- (tfjson.Action) (len=5) "no-op"
+        	            	+(tfjson.Actions) (len=2) {
+        	            	+ (tfjson.Action) (len=6) "delete",
+        	            	+ (tfjson.Action) (len=6) "create"
+        	            	 }
+        	Test:       	TestConfidentialGpuPublic
+        	Messages:   	Plan must be no-op for resource: module.kubectl.module.gcloud_kubectl.null_resource.run_command[0]
+    utils.go:76: 
+        	Error Trace:	/home/arthur/ciandt/terraform-google-kubernetes-engine/test/integration/testutils/utils.go:76
+        	            				/home/arthur/ciandt/terraform-google-kubernetes-engine/test/integration/testutils/utils.go:63
+        	            				/home/arthur/ciandt/terraform-google-kubernetes-engine/test/integration/confidential_gpu_public/confidential_gpu_public_test.go:38
+        	            				/home/arthur/go/pkg/mod/github.com/!google!cloud!platform/cloud-foundation-toolkit/infra/blueprint-test@v0.17.8/pkg/tft/terraform.go:638
+        	            				/home/arthur/go/pkg/mod/github.com/!google!cloud!platform/cloud-foundation-toolkit/infra/blueprint-test@v0.17.8/pkg/tft/terraform.go:670
+        	            				/home/arthur/go/pkg/mod/github.com/!google!cloud!platform/cloud-foundation-toolkit/infra/blueprint-test@v0.17.8/pkg/utils/stages.go:31
+        	            				/home/arthur/go/pkg/mod/github.com/!google!cloud!platform/cloud-foundation-toolkit/infra/blueprint-test@v0.17.8/pkg/tft/terraform.go:670
+        	Error:      	Not equal: 
+        	            	expected: tfjson.Actions{"no-op"}
+        	            	actual  : tfjson.Actions{"delete", "create"}
+        	            	
+        	            	Diff:
+        	            	--- Expected
+        	            	+++ Actual
+        	            	@@ -1,3 +1,4 @@
+        	            	-(tfjson.Actions) (len=1) {
+        	            	- (tfjson.Action) (len=5) "no-op"
+        	            	+(tfjson.Actions) (len=2) {
+        	            	+ (tfjson.Action) (len=6) "delete",
+        	            	+ (tfjson.Action) (len=6) "create"
+        	            	 }
+        	Test:       	TestConfidentialGpuPublic
+        	Messages:   	Plan must be no-op for resource: module.kubectl.module.gcloud_kubectl.null_resource.additional_components[0]
+    utils.go:76: 
+        	Error Trace:	/home/arthur/ciandt/terraform-google-kubernetes-engine/test/integration/testutils/utils.go:76
+        	            				/home/arthur/ciandt/terraform-google-kubernetes-engine/test/integration/testutils/utils.go:63
+        	            				/home/arthur/ciandt/terraform-google-kubernetes-engine/test/integration/confidential_gpu_public/confidential_gpu_public_test.go:38
+        	            				/home/arthur/go/pkg/mod/github.com/!google!cloud!platform/cloud-foundation-toolkit/infra/blueprint-test@v0.17.8/pkg/tft/terraform.go:638
+        	            				/home/arthur/go/pkg/mod/github.com/!google!cloud!platform/cloud-foundation-toolkit/infra/blueprint-test@v0.17.8/pkg/tft/terraform.go:670
+        	            				/home/arthur/go/pkg/mod/github.com/!google!cloud!platform/cloud-foundation-toolkit/infra/blueprint-test@v0.17.8/pkg/utils/stages.go:31
+        	            				/home/arthur/go/pkg/mod/github.com/!google!cloud!platform/cloud-foundation-toolkit/infra/blueprint-test@v0.17.8/pkg/tft/terraform.go:670
+        	Error:      	Not equal: 
+        	            	expected: tfjson.Actions{"no-op"}
+        	            	actual  : tfjson.Actions{"delete", "create"}
+        	            	
+        	            	Diff:
+        	            	--- Expected
+        	            	+++ Actual
+        	            	@@ -1,3 +1,4 @@
+        	            	-(tfjson.Actions) (len=1) {
+        	            	- (tfjson.Action) (len=5) "no-op"
+        	            	+(tfjson.Actions) (len=2) {
+        	            	+ (tfjson.Action) (len=6) "delete",
+        	            	+ (tfjson.Action) (len=6) "create"
+        	            	 }
+        	Test:       	TestConfidentialGpuPublic
+        	Messages:   	Plan must be no-op for resource: module.kubectl.module.gcloud_kubectl.null_resource.run_destroy_command[0]
+    utils.go:76: 
+        	Error Trace:	/home/arthur/ciandt/terraform-google-kubernetes-engine/test/integration/testutils/utils.go:76
+        	            				/home/arthur/ciandt/terraform-google-kubernetes-engine/test/integration/testutils/utils.go:63
+        	            				/home/arthur/ciandt/terraform-google-kubernetes-engine/test/integration/confidential_gpu_public/confidential_gpu_public_test.go:38
+        	            				/home/arthur/go/pkg/mod/github.com/!google!cloud!platform/cloud-foundation-toolkit/infra/blueprint-test@v0.17.8/pkg/tft/terraform.go:638
+        	            				/home/arthur/go/pkg/mod/github.com/!google!cloud!platform/cloud-foundation-toolkit/infra/blueprint-test@v0.17.8/pkg/tft/terraform.go:670
+        	            				/home/arthur/go/pkg/mod/github.com/!google!cloud!platform/cloud-foundation-toolkit/infra/blueprint-test@v0.17.8/pkg/utils/stages.go:31
+        	            				/home/arthur/go/pkg/mod/github.com/!google!cloud!platform/cloud-foundation-toolkit/infra/blueprint-test@v0.17.8/pkg/tft/terraform.go:670
+        	Error:      	Not equal: 
+        	            	expected: tfjson.Actions{"no-op"}
+        	            	actual  : tfjson.Actions{"delete", "create"}
+        	            	
+        	            	Diff:
+        	            	--- Expected
+        	            	+++ Actual
+        	            	@@ -1,3 +1,4 @@
+        	            	-(tfjson.Actions) (len=1) {
+        	            	- (tfjson.Action) (len=5) "no-op"
+        	            	+(tfjson.Actions) (len=2) {
+        	            	+ (tfjson.Action) (len=6) "delete",
+        	            	+ (tfjson.Action) (len=6) "create"
+        	            	 }
+        	Test:       	TestConfidentialGpuPublic
+        	Messages:   	Plan must be no-op for resource: module.gke.google_container_node_pool.pools["default"]
+    golden.go:158: 
+        	Error Trace:	/home/arthur/go/pkg/mod/github.com/!google!cloud!platform/cloud-foundation-toolkit/infra/blueprint-test@v0.17.8/pkg/golden/golden.go:158
+        	            				/home/arthur/ciandt/terraform-google-kubernetes-engine/test/integration/confidential_gpu_public/confidential_gpu_public_test.go:92
+        	            				/home/arthur/go/pkg/mod/github.com/!google!cloud!platform/cloud-foundation-toolkit/infra/blueprint-test@v0.17.8/pkg/tft/terraform.go:638
+        	            				/home/arthur/go/pkg/mod/github.com/!google!cloud!platform/cloud-foundation-toolkit/infra/blueprint-test@v0.17.8/pkg/tft/terraform.go:670
+        	            				/home/arthur/go/pkg/mod/github.com/!google!cloud!platform/cloud-foundation-toolkit/infra/blueprint-test@v0.17.8/pkg/utils/stages.go:31
+        	            				/home/arthur/go/pkg/mod/github.com/!google!cloud!platform/cloud-foundation-toolkit/infra/blueprint-test@v0.17.8/pkg/tft/terraform.go:670
+        	Error:      	Not equal: 
+        	            	expected: "KEY_NAME"
+        	            	actual  : "projects/PROJECT_ID/locations/us-central1/keyRings/gke-keyring-cae2/cryptoKeys/gke-key-cae2"
+        	            	
+        	            	Diff:
+        	            	--- Expected
+        	            	+++ Actual
+        	            	@@ -1 +1 @@
+        	            	-KEY_NAME
+        	            	+projects/PROJECT_ID/locations/us-central1/keyRings/gke-keyring-cae2/cryptoKeys/gke-key-cae2
+        	Test:       	TestConfidentialGpuPublic
+        	Messages:   	For path "nodeConfig.bootDiskKmsKey" expected "projects/PROJECT_ID/locations/us-central1/keyRings/gke-keyring-cae2/cryptoKeys/gke-key-cae2" to match fixture "KEY_NAME"
+FAIL
+Process 90697 has exited with status 1
+Detaching
+dlv dap (89665) exited with code: 0
